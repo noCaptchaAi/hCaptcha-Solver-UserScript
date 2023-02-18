@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         hCaptcha Captcha Solver by noCaptchaAi
+// @name         hCaptcha Solver UserScript by noCaptchaAi
 // @name:ar      noCaptchaAI hCaptcha Solver حلال
 // @name:ru      noCaptchaAI Решатель капчи hCaptcha
 // @name:sh-CN   noCaptchaAI 验证码求解器
@@ -89,6 +89,8 @@
     open.apply(this, arguments);
   };
 
+  localStorage.setItem("noCaptchaAi", "true");
+
   let startTime;
   let stop = false;
   const v = GM_info.script.version;
@@ -118,7 +120,9 @@
     position: "center",
     showConfirmButton: false,
     showCloseButton: true,
-    timer: 3000,
+    timer: 5000,
+    width: "60%",
+    color: "#222",
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -288,6 +292,21 @@
     });
   });
 
+  if (
+    isApikeyEmpty &&
+    window.top === window &&
+    location.href === "https://dash.nocaptchaai.com/home"
+  ) {
+    Toast.fire({
+      imageUrl: "https://i.postimg.cc/6qf6Gw4t/image.png",
+      duration: 4000,
+      color: "#222",
+      width: "85vw",
+      background: "#333",
+      padding: "2em",
+    });
+  }
+
   while (!(!navigator.onLine || stop || isApikeyEmpty)) {
     await sleep(cfg.get("loop_interval") * 1000);
 
@@ -447,19 +466,19 @@
         Toaster(
           "error",
           "<h3>Account flagged</h3> <h4>a) Buy Plan</h4> <h4>b) Ping on Discord/Telegram for activation</h4> ",
-          response.error
+          response.message
         );
         stop = true;
         await sleep(3000);
         window.open("https://dash.nocaptchaai.com");
       } else if (response.error === "Invalid apikey.") {
-        Toaster("error", "Please check your apikey details.", response.error);
+        Toaster("error", response.message);
         console.log(response.error);
         await sleep(4000);
         cfg.open("window");
         stop = true;
       } else if (response.error) {
-        Toaster("error", "please verify Apikey and api url", response.error);
+        Toaster("error", response.message);
         console.log(response.error);
 
         await sleep(4000);
