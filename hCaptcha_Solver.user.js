@@ -1,22 +1,22 @@
 // ==UserScript==
-// @name         hCaptcha Solver UserScript by noCaptchaAi
-// @name:ar      noCaptchaAI hCaptcha Solver حلال
-// @name:ru      noCaptchaAI Решатель капчи hCaptcha
+// @name         qCaptcha Solver UserScript by noCaptchaAi
+// @name:ar      noCaptchaAI qCaptcha Solver حلال
+// @name:ru      noCaptchaAI Решатель капчи qCaptcha
 // @name:sh-CN   noCaptchaAI 验证码求解器
 // @namespace    https://nocaptchaai.com
 // @version      3.7.2
-// @description  hCaptcha Solver automated Captcha Solver bypass Ai service. Free 6000 🔥solves/month! 50x⚡ faster than 2Captcha & others
-// @description:ar تجاوز برنامج Captcha Solver الآلي لخدمة hCaptcha Solver خدمة Ai. 6000 🔥 حل / شهر مجاني! 50x⚡ أسرع من 2Captcha وغيرها
-// @description:ru hCaptcha Solver автоматизирует решение Captcha Solver в обход сервиса Ai. Бесплатно 6000 🔥решений/месяц! В 50 раз⚡ быстрее, чем 2Captcha и другие
-// @description:zh-CN hCaptcha Solver 自动绕过 Ai 服务的 Captcha Solver。 免费 6000 🔥解决/月！ 比 2Captcha 和其他人快 50x⚡
+// @description  qCaptcha Solver automated Captcha Solver bypass Ai service. Free 6000 🔥solves/month! 50x⚡ faster than 2Captcha & others
+// @description:ar تجاوز برنامج Captcha Solver الآلي لخدمة qCaptcha Solver خدمة Ai. 6000 🔥 حل / شهر مجاني! 50x⚡ أسرع من 2Captcha وغيرها
+// @description:ru qCaptcha Solver автоматизирует решение Captcha Solver в обход сервиса Ai. Бесплатно 6000 🔥решений/месяц! В 50 раз⚡ быстрее, чем 2Captcha и другие
+// @description:zh-CN qCaptcha Solver 自动绕过 Ai 服务的 Captcha Solver。 免费 6000 🔥解决/月！ 比 2Captcha 和其他人快 50x⚡
 // @author       noCaptcha AI and Diego
 // @match        *://*/*
 // @match        https://config.nocaptchaai.com/?apikey=*
 // @icon         https://docs.nocaptchaai.com/img/nocaptchaai.com.png
 // @require      https://greasyfork.org/scripts/395037-monkeyconfig-modern/code/MonkeyConfig%20Modern.js
 // @require      https://cdn.jsdelivr.net/npm/sweetalert2@11
-// @updateURL    https://github.com/noCaptchaAi/hCaptchaSolver.user.js/raw/main/hCaptchaSolver.user.js
-// @downloadURL  https://github.com/noCaptchaAi/hCaptchaSolver.user.js/raw/main/hCaptchaSolver.user.js
+// @updateURL    https://github.com/noCaptchaAi/qCaptchaSolver.user.js/raw/main/qCaptchaSolver.user.js
+// @downloadURL  https://github.com/noCaptchaAi/qCaptchaSolver.user.js/raw/main/qCaptchaSolver.user.js
 // @grant        GM_info
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -400,7 +400,7 @@
           images,
           target,
           altln: ob,
-          method: "hcaptcha_base64",
+          method: "qCaptcha_base64",
           sitekey: searchParams.get("sitekey"),
           site: searchParams.get("host"),
           ln:
@@ -574,7 +574,7 @@
   async function onXHReady() {
     if (!this.responseType != "") {
       if (!this.responseText) return;
-      if (this.responseURL.startsWith("https://hcaptcha.com/getcaptcha")) {
+      if (this.responseURL.startsWith("https://qCaptcha.com/getcaptcha")) {
         req_q = JSON.parse(this.responseText)?.requester_question;
         target_xhr = JSON.parse(this.responseText).requester_question?.en;
         lang_xhr = "en";
