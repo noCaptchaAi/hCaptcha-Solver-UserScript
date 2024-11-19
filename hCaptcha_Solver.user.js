@@ -574,7 +574,7 @@
   async function onXHReady() {
     if (!this.responseType != "") {
       if (!this.responseText) return;
-      if (this.responseURL.startsWith("https://qCaptcha.com/getcaptcha")) {
+      if (this.responseURL.startsWith("https://hCaptcha.com/getcaptcha")) {
         req_q = JSON.parse(this.responseText)?.requester_question;
         target_xhr = JSON.parse(this.responseText).requester_question?.en;
         lang_xhr = "en";
